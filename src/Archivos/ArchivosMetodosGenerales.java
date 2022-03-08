@@ -4,21 +4,143 @@
  */
 package Archivos;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author tetil
+ * Para que este archivo agregue y busque, cada columna debe estar separada por dos espacios, por ejemplo, Nombre  apellido1, Maria Juana  ApellidoDEMaria
+ * se divide asi, porque los nombre y apellidos compuestos estan separados por un espacio
+ * 
  */
 public class ArchivosMetodosGenerales {
     
     private String nombre_archivo;
-    private String ruta_archivo;
+    private String ruta_archivo = "src\\BaseDatos\\";
+
+
+
     
-    public ArchivosMetodosGenerales(){
+    public void establecer_nombre_archivo(String nombre_archivo){
+        //coloca el nombre del archivo en el sistema de la clase
         
+        this.nombre_archivo = nombre_archivo;
+    }
+    
+    public void escribir_linea_archivo(String sentencia){
+        //escribe la linea en el archivo
         
-        ruta_archivo = "src\\Datosarchivos\\";
+        try{
+            
+            
+            FileOutputStream ArchivoUsar = new FileOutputStream(ruta_archivo + nombre_archivo + ".dat", true);
+            DataOutputStream ArchivoParaEscritura = new DataOutputStream(ArchivoUsar);
+            
+            ArchivoParaEscritura.writeUTF(sentencia);
+            
+            ArchivoParaEscritura.close();
+            ArchivoUsar.close();
+            
+            
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null,
+            "Error en en escribir_linea_archivo "+ e,
+            "Error",
+            JOptionPane.ERROR_MESSAGE);
+            
+		
+        }
     
     }
+    
+    public List<String> leer_almacenar_registros(){
+        //lee todos los registros que se encuentran en el archivo y los almacena en forma de lista
+
+        
+        String linea;
+        
+        
+        List<String> RegistrosObtenidosDeArchivo = new ArrayList<>();
+        
+        try{
+            FileInputStream ArchivoUsar = new FileInputStream(ruta_archivo + nombre_archivo + ".dat");
+            DataInputStream ArchivoParaLectura = new DataInputStream(ArchivoUsar);
+            
+            while(ArchivoParaLectura.available() > 0){
+                
+                
+                
+                linea = ArchivoParaLectura.readUTF();
+                RegistrosObtenidosDeArchivo.add(linea);
+	    
+            }
+            
+            ArchivoParaLectura.close();
+            ArchivoUsar.close();
+            
+	}catch(IOException e){
+            JOptionPane.showMessageDialog(null,
+            "Error en leer_almacenar_registros "+ e,
+            "Error",
+            JOptionPane.ERROR_MESSAGE);
+            		
+        }
+        
+        return RegistrosObtenidosDeArchivo;
+    }
+    
+    public List<String> almacenar_registros_coincidan_con_un_identificador(List<String> arreglo_registros, int numero_de_columna, String identificador){
+        
+        // separa los registros en columnas, donde se podra buscar el identificado en la columna correspondiente y almacena en una lista aqueellos registros que
+        //coincidan con el identificardo
+        
+        List<String> registros_que_coinciden = new ArrayList<>();
+        String[] columnas;
+
+    
+
+        for (int i = 0; i < arreglo_registros.size(); i++) {
+
+            columnas = arreglo_registros.get(i).split("  ");
+
+            if(columnas[numero_de_columna].equalsIgnoreCase(identificador)){
+
+                registros_que_coinciden.add(arreglo_registros.get(i));
+
+            }
+
+            
+        }
+
+        
+        
+        
+        return registros_que_coinciden;
+    }
+
+    public List<String> buscar_registros_o_registro(int numero_de_columna, String identificador_registro){
+        //lee y busca un registro o varios y despues los retorna
+        List<String> registros_totales = new ArrayList<>();
+        List<String> registros_que_coinciden = new ArrayList<>();
+
+        registros_totales = leer_almacenar_registros();
+        registros_que_coinciden = almacenar_registros_coincidan_con_un_identificador(registros_totales, numero_de_columna, identificador_registro);
+
+
+        return registros_que_coinciden;
+
+
+    }
+    
+    
+    
     
     
     
