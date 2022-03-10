@@ -103,8 +103,11 @@ public class ventana_consultas extends javax.swing.JFrame {
         caja_busquedas.setBorder(null);
         caja_busquedas.setPreferredSize(new java.awt.Dimension(188, 30));
         caja_busquedas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                caja_busquedasMousePressed(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                caja_busquedasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                caja_busquedasMouseExited(evt);
             }
         });
 
@@ -116,6 +119,7 @@ public class ventana_consultas extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Buscador: ");
 
+        jTable1.setFont(new java.awt.Font("Victor Mono SemiBold", 0, 13)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -209,14 +213,20 @@ public class ventana_consultas extends javax.swing.JFrame {
     private void boton_buscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_buscarMouseClicked
         
     }//GEN-LAST:event_boton_buscarMouseClicked
-    //Fin de la funcion de trabajo
-    private void caja_busquedasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_caja_busquedasMousePressed
-        
+
+    private void caja_busquedasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_caja_busquedasMouseEntered
         if(caja_busquedas.getText().equals("Ingrese su consulta aquí")){
             caja_busquedas.setText("");
             caja_busquedas.setForeground(Color.BLACK);
-        }     
-    }//GEN-LAST:event_caja_busquedasMousePressed
+        }
+    }//GEN-LAST:event_caja_busquedasMouseEntered
+
+    private void caja_busquedasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_caja_busquedasMouseExited
+        if(caja_busquedas.getText().equals("")){
+            caja_busquedas.setText("Ingrese su consulta aquí");
+            caja_busquedas.setForeground(new Color(155, 155, 155));
+        }
+    }//GEN-LAST:event_caja_busquedasMouseExited
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
