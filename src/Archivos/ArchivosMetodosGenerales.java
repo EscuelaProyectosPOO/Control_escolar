@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 /**
  *
@@ -60,7 +63,7 @@ public class ArchivosMetodosGenerales {
     
     }
     
-    public List<String> leer_almacenar_registros(){
+    public  List<String> leer_almacenar_registros(){
         //lee todos los registros que se encuentran en el archivo y los almacena en forma de lista
 
         
@@ -139,6 +142,42 @@ public class ArchivosMetodosGenerales {
 
     }
     
+    public List<String> encontrar_registro_coincida(String Coincidancia_cadena ){
+        
+        //le das la palbra que quieras que contenga el registro y busca
+        
+        List<String> RegistrosObtenidosDeArchivo = new ArrayList<>();
+        List<String> RegistrosCoincidentes = new ArrayList<>();
+        
+        RegistrosObtenidosDeArchivo = leer_almacenar_registros();
+        
+        for(String registro : RegistrosObtenidosDeArchivo ){
+            
+            
+            if(registro.contains(Coincidancia_cadena)){
+                
+                RegistrosCoincidentes.add(registro);
+                
+            }
+            
+
+        }
+        
+        return RegistrosCoincidentes;
+
+    }
+    
+    
+    /*public static void main(String args[]) {
+        
+        ArchivosMetodosGenerales  m = new ArchivosMetodosGenerales ();
+        m.establecer_nombre_archivo("prueba");
+        /*m.escribir_linea_archivo("Josefa Maria  Perez nn Z200");
+        //m.escribir_linea_archivo("Maria Colar  Perez nn Z200");
+        //m.escribir_linea_archivo("Jose colar  Joler  bbmns  Z20020020");
+        m.encontrar_registro_coincida("Maria");
+    
+    }*/
     
     
     
