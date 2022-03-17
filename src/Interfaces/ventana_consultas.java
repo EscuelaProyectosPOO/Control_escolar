@@ -13,7 +13,7 @@ public class ventana_consultas extends javax.swing.JFrame {
         
         initComponents();
         this.setLocationRelativeTo(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
     }
 
     
