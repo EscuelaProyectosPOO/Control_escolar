@@ -2,10 +2,14 @@
 package Interfaces;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 public class ventana_consultas extends javax.swing.JFrame {
 
     public ventana_consultas() {
+        
         initComponents();
         this.setLocationRelativeTo(null);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
@@ -22,13 +26,13 @@ public class ventana_consultas extends javax.swing.JFrame {
         panel_buscar = new javax.swing.JPanel();
         boton_buscar = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        OpcionCombo = new javax.swing.JComboBox<>();
         caja_busquedas = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaConsultas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,7 +59,7 @@ public class ventana_consultas extends javax.swing.JFrame {
             .addGroup(panel_tituloLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(label_titulo)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panel_buscar.setBackground(new java.awt.Color(85, 108, 107));
@@ -87,16 +91,13 @@ public class ventana_consultas extends javax.swing.JFrame {
             .addComponent(boton_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
         );
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setFont(new java.awt.Font("Victor Mono SemiBold", 0, 15)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setMaximumRowCount(3);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alumnos", "Materias", "Docentes" }));
-        jComboBox1.setBorder(null);
-        jComboBox1.setMinimumSize(new java.awt.Dimension(72, 30));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(72, 30));
+        OpcionCombo.setFont(new java.awt.Font("Victor Mono SemiBold", 0, 15)); // NOI18N
+        OpcionCombo.setMaximumRowCount(3);
+        OpcionCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alumnos", "Materias", "Docentes" }));
+        OpcionCombo.setBorder(null);
+        OpcionCombo.setMinimumSize(new java.awt.Dimension(72, 30));
+        OpcionCombo.setPreferredSize(new java.awt.Dimension(72, 30));
 
-        caja_busquedas.setBackground(new java.awt.Color(255, 255, 255));
         caja_busquedas.setFont(new java.awt.Font("Victor Mono SemiBold", 0, 14)); // NOI18N
         caja_busquedas.setForeground(new java.awt.Color(153, 153, 153));
         caja_busquedas.setText("Ingrese su consulta aquí");
@@ -112,15 +113,13 @@ public class ventana_consultas extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Victor Mono SemiBold", 0, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Opciones:");
 
         jLabel3.setFont(new java.awt.Font("Victor Mono SemiBold", 0, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Buscador: ");
 
-        jTable1.setFont(new java.awt.Font("Victor Mono SemiBold", 0, 13)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaConsultas.setFont(new java.awt.Font("Victor Mono SemiBold", 0, 13)); // NOI18N
+        TablaConsultas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -131,7 +130,7 @@ public class ventana_consultas extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(TablaConsultas);
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
@@ -149,7 +148,7 @@ public class ventana_consultas extends javax.swing.JFrame {
                             .addComponent(caja_busquedas, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(OpcionCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,7 +173,7 @@ public class ventana_consultas extends javax.swing.JFrame {
                         .addGap(60, 60, 60)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(OpcionCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
@@ -198,19 +197,122 @@ public class ventana_consultas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boton_buscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_buscarMouseExited
-        System.out.println("Sale");
+        
         panel_buscar.setBackground(new Color(85, 108, 107));
         boton_buscar.setForeground(new Color(219, 217, 217));
     }//GEN-LAST:event_boton_buscarMouseExited
 
     private void boton_buscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_buscarMouseEntered
-        System.out.println("Entra");
+        
         panel_buscar.setBackground(new Color(44, 68, 67));
         boton_buscar.setForeground(Color.white);
     }//GEN-LAST:event_boton_buscarMouseEntered
     
     //Trabajar sobre esta funcion
     private void boton_buscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_buscarMouseClicked
+        
+        
+        if(OpcionCombo.getSelectedIndex() == 0){
+            // si alumnos es seleccionado
+            
+            titulo = new String[]{"Nombre", "Ap. Paterno", "Ap. Materno", "Numero Control", "Materias"};
+            tabla.setColumnIdentifiers(titulo);
+            TablaConsultas.setModel(tabla);
+            
+            
+            if((caja_busquedas.getText()).isBlank() == false){
+                
+                registros_que_coinciden.clear();
+                //registros_que_coinciden.add("Josefa Maria  Perez  nn  Z200  Mate");
+                //registros_que_coinciden.add("Maria Colar  Perez  nn  Z200  Mate");
+                //registros_que_coinciden.add("Jose colar  Joler  bbmns  Z20020020  Mate");
+                
+                
+                for (int i = 0; i < registros_que_coinciden.size(); i++) {
+
+                    columnas = registros_que_coinciden.get(i).split("  ");
+                    
+                    tabla.addRow(new Object[]{ columnas[0], columnas[1], columnas[2], columnas[3], columnas[4]});
+
+
+                }
+                
+                
+                
+                
+            }
+            
+            
+        }else if(OpcionCombo.getSelectedIndex() == 1){
+            //si Materias es seleccionado
+            
+            titulo = new String[]{"Nombre", "Clave"};
+            
+            tabla.setColumnIdentifiers(titulo);
+            TablaConsultas.setModel(tabla);
+            
+            
+            if((caja_busquedas.getText()).isBlank() == false){
+                
+                registros_que_coinciden.clear();
+                //registros_que_coinciden.add("Josefa Maria  Perez  nn  Z200  Mate");
+                //registros_que_coinciden.add("Maria Colar  Perez  nn  Z200  Mate");
+                //registros_que_coinciden.add("Jose colar  Joler  bbmns  Z20020020  Mate");
+                
+                
+                for (int i = 0; i < registros_que_coinciden.size(); i++) {
+
+                    columnas = registros_que_coinciden.get(i).split("  ");
+                    
+                    tabla.addRow(new Object[]{ columnas[0], columnas[1]});
+
+
+                }
+                
+                
+                
+                
+            }
+            
+            
+        }else if(OpcionCombo.getSelectedIndex() == 2){
+            //si docentes es seleccionado upperCaseFirst para poner la primera letra en mayuscula
+            
+            titulo = new String[]{"Nombre", "Ap. Paterno", "Ap. Materno", "Materias" };
+            
+            tabla.setColumnIdentifiers(titulo);
+            TablaConsultas.setModel(tabla);
+            
+            
+            if((caja_busquedas.getText()).isBlank() == false){
+                
+                registros_que_coinciden.clear();
+                //registros_que_coinciden.add("Josefa Maria  Perez  nn  Z200  Mate");
+                //registros_que_coinciden.add("Maria Colar  Perez  nn  Z200  Mate");
+                //registros_que_coinciden.add("Jose colar  Joler  bbmns  Z20020020  Mate");
+                
+                
+                for (int i = 0; i < registros_que_coinciden.size(); i++) {
+
+                    columnas = registros_que_coinciden.get(i).split("  ");
+                    
+                    tabla.addRow(new Object[]{ columnas[0], columnas[1], columnas[2], columnas[3]});
+
+
+                }
+                
+                
+                
+                
+            }
+            
+            
+            
+        }
+        
+        
+        
+        
         
     }//GEN-LAST:event_boton_buscarMouseClicked
 
@@ -259,18 +361,22 @@ public class ventana_consultas extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    String[] columnas;
+    List<String> registros_que_coinciden = new ArrayList<>();
+    String[] titulo;
+    DefaultTableModel tabla = new DefaultTableModel();
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> OpcionCombo;
+    private javax.swing.JTable TablaConsultas;
     private javax.swing.JPanel bg;
     private javax.swing.JLabel boton_buscar;
     private javax.swing.JTextField caja_busquedas;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel label_titulo;
     private javax.swing.JPanel panel_buscar;
     private javax.swing.JPanel panel_titulo;
