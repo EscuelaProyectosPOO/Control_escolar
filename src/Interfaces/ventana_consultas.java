@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
+
 public class ventana_consultas extends javax.swing.JFrame {
 
     public ventana_consultas() {
@@ -223,7 +224,7 @@ public class ventana_consultas extends javax.swing.JFrame {
             if((caja_busquedas.getText()).isBlank() == false){
                 
                 registros_que_coinciden.clear();
-                //registros_que_coinciden.add("Josefa Maria  Perez  nn  Z200  Mate");
+                //registros_que_coinciden = 
                 //registros_que_coinciden.add("Maria Colar  Perez  nn  Z200  Mate");
                 //registros_que_coinciden.add("Jose colar  Joler  bbmns  Z20020020  Mate");
                 

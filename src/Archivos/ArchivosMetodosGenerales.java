@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.*;
+
 
 
 /**
@@ -142,19 +142,28 @@ public class ArchivosMetodosGenerales {
 
     }
     
-    public List<String> encontrar_registro_coincida(String Coincidancia_cadena ){
+    public List<String> encontrar_registro_coincida(String Palabra_buscar ){
         
         //le das la palbra que quieras que contenga el registro y busca
         
         List<String> RegistrosObtenidosDeArchivo = new ArrayList<>();
         List<String> RegistrosCoincidentes = new ArrayList<>();
         
+        
         RegistrosObtenidosDeArchivo = leer_almacenar_registros();
+        
+        //escapar y agregar limites de palabra completa - case-insensitive
+        //límites de palabra completa (\b) alrededor de la palabra buscada. Es decir que no esté precedida ni sucedida por letras, números o un guión bajo.
+        Pattern reglas_coincidencia_palabra = Pattern.compile("\\b" + Pattern.quote(Palabra_buscar) + "\\b", Pattern.CASE_INSENSITIVE);
+        Matcher palabra_comparacion;
         
         for(String registro : RegistrosObtenidosDeArchivo ){
             
+            palabra_comparacion = reglas_coincidencia_palabra.matcher(registro);
             
-            if(registro.contains(Coincidancia_cadena)){
+            //si el registro tiene el texto 
+            if(palabra_comparacion.find()){
+                System.out.println(registro);
                 
                 RegistrosCoincidentes.add(registro);
                 
@@ -172,10 +181,10 @@ public class ArchivosMetodosGenerales {
         
         ArchivosMetodosGenerales  m = new ArchivosMetodosGenerales ();
         m.establecer_nombre_archivo("prueba");
-        /*m.escribir_linea_archivo("Josefa Maria  Perez nn Z200");
+        //m.escribir_linea_archivo("Josefa Maria  Perez nn Z200");
         //m.escribir_linea_archivo("Maria Colar  Perez nn Z200");
         //m.escribir_linea_archivo("Jose colar  Joler  bbmns  Z20020020");
-        m.encontrar_registro_coincida("Maria");
+        m.encontrar_registro_coincida("MarIa");
     
     }*/
     
