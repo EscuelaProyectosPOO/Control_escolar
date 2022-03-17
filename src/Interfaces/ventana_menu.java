@@ -98,6 +98,9 @@ public class ventana_menu extends javax.swing.JFrame {
         boton_alumnos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         boton_alumnos.setText("ALUMNOS");
         boton_alumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boton_alumnosMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 boton_alumnosMouseEntered(evt);
             }
@@ -125,6 +128,9 @@ public class ventana_menu extends javax.swing.JFrame {
         boton_meterias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         boton_meterias.setText("MATERIAS");
         boton_meterias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boton_meteriasMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 boton_meteriasMouseEntered(evt);
             }
@@ -152,6 +158,9 @@ public class ventana_menu extends javax.swing.JFrame {
         boton_docentes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         boton_docentes.setText("DOCENTES");
         boton_docentes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boton_docentesMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 boton_docentesMouseEntered(evt);
             }
@@ -263,6 +272,18 @@ public class ventana_menu extends javax.swing.JFrame {
     private void boton_consultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_consultasMouseClicked
         new ventana_consultas().setVisible(true);
     }//GEN-LAST:event_boton_consultasMouseClicked
+
+    private void boton_alumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_alumnosMouseClicked
+        new ventana_alumnos().setVisible(true);
+    }//GEN-LAST:event_boton_alumnosMouseClicked
+
+    private void boton_meteriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_meteriasMouseClicked
+        new ventana_materias().setVisible(true);
+    }//GEN-LAST:event_boton_meteriasMouseClicked
+
+    private void boton_docentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_docentesMouseClicked
+        new ventana_docentes().setVisible(true);
+    }//GEN-LAST:event_boton_docentesMouseClicked
 
    
     public static void main(String args[]) {
