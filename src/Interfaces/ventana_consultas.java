@@ -5,6 +5,9 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import Archivos.ArchivoAlumno;
+import Archivos.ArchivoDocente;
+import Archivos.ArchivosMateria;
 
 
 public class ventana_consultas extends javax.swing.JFrame {
@@ -98,6 +101,11 @@ public class ventana_consultas extends javax.swing.JFrame {
         OpcionCombo.setBorder(null);
         OpcionCombo.setMinimumSize(new java.awt.Dimension(72, 30));
         OpcionCombo.setPreferredSize(new java.awt.Dimension(72, 30));
+        OpcionCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OpcionComboActionPerformed(evt);
+            }
+        });
 
         caja_busquedas.setFont(new java.awt.Font("Victor Mono SemiBold", 0, 14)); // NOI18N
         caja_busquedas.setForeground(new java.awt.Color(153, 153, 153));
@@ -215,7 +223,7 @@ public class ventana_consultas extends javax.swing.JFrame {
         
         if(OpcionCombo.getSelectedIndex() == 0){
             // si alumnos es seleccionado
-            
+            Clear_Table1();
             titulo = new String[]{"Nombre", "Ap. Paterno", "Ap. Materno", "Numero Control", "Materias"};
             tabla.setColumnIdentifiers(titulo);
             TablaConsultas.setModel(tabla);
@@ -224,9 +232,8 @@ public class ventana_consultas extends javax.swing.JFrame {
             if((caja_busquedas.getText()).isBlank() == false){
                 
                 registros_que_coinciden.clear();
-                //registros_que_coinciden = 
-                //registros_que_coinciden.add("Maria Colar  Perez  nn  Z200  Mate");
-                //registros_que_coinciden.add("Jose colar  Joler  bbmns  Z20020020  Mate");
+                registros_que_coinciden = conexionAlumnos.encontrar_registro_coincida(caja_busquedas.getText());
+                
                 
                 
                 for (int i = 0; i < registros_que_coinciden.size(); i++) {
@@ -246,7 +253,7 @@ public class ventana_consultas extends javax.swing.JFrame {
             
         }else if(OpcionCombo.getSelectedIndex() == 1){
             //si Materias es seleccionado
-            
+            Clear_Table1();
             titulo = new String[]{"Nombre", "Clave"};
             
             tabla.setColumnIdentifiers(titulo);
@@ -256,10 +263,8 @@ public class ventana_consultas extends javax.swing.JFrame {
             if((caja_busquedas.getText()).isBlank() == false){
                 
                 registros_que_coinciden.clear();
-                //registros_que_coinciden.add("Josefa Maria  Perez  nn  Z200  Mate");
-                //registros_que_coinciden.add("Maria Colar  Perez  nn  Z200  Mate");
-                //registros_que_coinciden.add("Jose colar  Joler  bbmns  Z20020020  Mate");
-                
+                registros_que_coinciden = conexionMateria.encontrar_registro_coincida(caja_busquedas.getText());
+             
                 
                 for (int i = 0; i < registros_que_coinciden.size(); i++) {
 
@@ -278,7 +283,7 @@ public class ventana_consultas extends javax.swing.JFrame {
             
         }else if(OpcionCombo.getSelectedIndex() == 2){
             //si docentes es seleccionado upperCaseFirst para poner la primera letra en mayuscula
-            
+            Clear_Table1();
             titulo = new String[]{"Nombre", "Ap. Paterno", "Ap. Materno", "Materias" };
             
             tabla.setColumnIdentifiers(titulo);
@@ -288,10 +293,8 @@ public class ventana_consultas extends javax.swing.JFrame {
             if((caja_busquedas.getText()).isBlank() == false){
                 
                 registros_que_coinciden.clear();
-                //registros_que_coinciden.add("Josefa Maria  Perez  nn  Z200  Mate");
-                //registros_que_coinciden.add("Maria Colar  Perez  nn  Z200  Mate");
-                //registros_que_coinciden.add("Jose colar  Joler  bbmns  Z20020020  Mate");
-                
+                registros_que_coinciden = conexionDocente.encontrar_registro_coincida(caja_busquedas.getText());
+               
                 
                 for (int i = 0; i < registros_que_coinciden.size(); i++) {
 
@@ -331,6 +334,104 @@ public class ventana_consultas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_caja_busquedasMouseExited
 
+    private void OpcionComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpcionComboActionPerformed
+        // desata algo cuando se mueve el comboBox
+        
+        if(OpcionCombo.getSelectedIndex() == 0){
+            // si alumnos es seleccionado
+            Clear_Table1();
+            titulo = new String[]{"Nombre", "Ap. Paterno", "Ap. Materno", "Numero Control", "Materias"};
+            tabla.setColumnIdentifiers(titulo);
+            TablaConsultas.setModel(tabla);
+            
+            
+            if((caja_busquedas.getText()).isBlank() == false){
+                
+                registros_que_coinciden.clear();
+                registros_que_coinciden = conexionAlumnos.leer_almacenar_registros();
+          
+                
+                
+                for (int i = 0; i < registros_que_coinciden.size(); i++) {
+
+                    columnas = registros_que_coinciden.get(i).split("  ");
+                    
+                    tabla.addRow(new Object[]{ columnas[0], columnas[1], columnas[2], columnas[3], columnas[4]});
+
+
+                }
+                
+                
+                
+                
+            }
+            
+            
+        }else if(OpcionCombo.getSelectedIndex() == 1){
+            //si Materias es seleccionado
+            Clear_Table1();
+            titulo = new String[]{"Nombre", "Clave"};
+            
+            tabla.setColumnIdentifiers(titulo);
+            TablaConsultas.setModel(tabla);
+            
+            
+            if((caja_busquedas.getText()).isBlank() == false){
+                
+                registros_que_coinciden.clear();
+                registros_que_coinciden = conexionMateria.leer_almacenar_registros();
+               
+                
+                for (int i = 0; i < registros_que_coinciden.size(); i++) {
+
+                    columnas = registros_que_coinciden.get(i).split("  ");
+                    
+                    tabla.addRow(new Object[]{ columnas[0], columnas[1]});
+
+
+                }
+                
+                
+                
+                
+            }
+            
+            
+        }else if(OpcionCombo.getSelectedIndex() == 2){
+            //si docentes es seleccionado upperCaseFirst para poner la primera letra en mayuscula
+            Clear_Table1();
+            titulo = new String[]{"Nombre", "Ap. Paterno", "Ap. Materno", "Materias" };
+            
+            tabla.setColumnIdentifiers(titulo);
+            TablaConsultas.setModel(tabla);
+            
+            
+            if((caja_busquedas.getText()).isBlank() == false){
+                
+                registros_que_coinciden.clear();
+                registros_que_coinciden = conexionDocente.leer_almacenar_registros();
+                
+                
+                for (int i = 0; i < registros_que_coinciden.size(); i++) {
+
+                    columnas = registros_que_coinciden.get(i).split("  ");
+                    
+                    tabla.addRow(new Object[]{ columnas[0], columnas[1], columnas[2], columnas[3]});
+
+
+                }
+                
+                
+                
+                
+            }
+            
+            
+            
+        }
+        
+    }//GEN-LAST:event_OpcionComboActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -362,7 +463,18 @@ public class ventana_consultas extends javax.swing.JFrame {
             }
         });
     }
+    private void Clear_Table1(){
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            tabla.removeRow(i);
+        i-=1;
+        }
+    }
     
+    
+    ArchivoAlumno conexionAlumnos = new ArchivoAlumno();
+    ArchivoDocente conexionDocente = new ArchivoDocente();
+    ArchivosMateria conexionMateria = new ArchivosMateria();
+
     String[] columnas;
     List<String> registros_que_coinciden = new ArrayList<>();
     String[] titulo;

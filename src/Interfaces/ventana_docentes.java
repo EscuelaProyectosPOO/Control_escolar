@@ -349,7 +349,8 @@ public class ventana_docentes extends javax.swing.JFrame {
     }//GEN-LAST:event_materias_cajaMousePressed
 
     private void boton_registrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_registrarMouseClicked
-
+        Archivos.ArchivoDocente obj = new Archivos.ArchivoDocente();
+        obj.insertar(nombre_caja.getText(), paterno_caja.getText(), materno_caja.getText(), materias_caja.getText());
     }//GEN-LAST:event_boton_registrarMouseClicked
 
     private void boton_registrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_registrarMouseEntered

@@ -208,7 +208,8 @@ public class ventana_materias extends javax.swing.JFrame {
     }//GEN-LAST:event_paterno_cajaMousePressed
 
     private void boton_registrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_registrarMouseClicked
-
+        Archivos.ArchivosMateria obj = new Archivos.ArchivosMateria();
+        obj.insertar(nombre_caja.getText(), paterno_caja.getText());
     }//GEN-LAST:event_boton_registrarMouseClicked
 
     private void boton_registrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_registrarMouseEntered

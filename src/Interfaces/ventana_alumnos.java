@@ -312,7 +312,8 @@ public class ventana_alumnos extends javax.swing.JFrame {
     
     //Boton registrar
     private void boton_registrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_registrarMouseClicked
-
+        Archivos.ArchivoAlumno obj = new Archivos.ArchivoAlumno();
+        obj.insertar(nombre_caja.getText(), paterno_caja.getText(), materno_caja.getText(), control_caja.getText(), materias_caja.getText());
     }//GEN-LAST:event_boton_registrarMouseClicked
     //fin del boton
     
